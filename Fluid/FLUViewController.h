@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Peyton Randolph. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface FLUViewController : UIViewController
 
 @end

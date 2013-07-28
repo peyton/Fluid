@@ -8,6 +8,8 @@
 
 #import "FLUViewController.h"
 
+#import "ParticleFluid.h"
+
 @interface FLUViewController ()
 
 @end

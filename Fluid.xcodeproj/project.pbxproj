@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C2B78E617A1E832005B2A37 /* Vector.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C2B78E517A1E832005B2A37 /* Vector.c */; };
+		9C2B78E917A1E8A2005B2A37 /* LinkedList.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C2B78E817A1E8A2005B2A37 /* LinkedList.c */; };
+		9C2B78EB17A21482005B2A37 /* Springs.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C2B78EA17A21482005B2A37 /* Springs.c */; };
 		9C4A27F917A1D83B00B06A94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A27F817A1D83B00B06A94 /* Foundation.framework */; };
 		9C4A27FB17A1D83B00B06A94 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A27FA17A1D83B00B06A94 /* CoreGraphics.framework */; };
 		9C4A27FD17A1D83B00B06A94 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A27FC17A1D83B00B06A94 /* UIKit.framework */; };
@@ -21,6 +24,7 @@
 		9C4A281A17A1D83B00B06A94 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A27FC17A1D83B00B06A94 /* UIKit.framework */; };
 		9C4A282217A1D83B00B06A94 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C4A282017A1D83B00B06A94 /* InfoPlist.strings */; };
 		9C4A282417A1D83B00B06A94 /* FluidTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A282317A1D83B00B06A94 /* FluidTests.m */; };
+		9C4A282E17A1D89A00B06A94 /* ParticleFluid.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A282D17A1D89A00B06A94 /* ParticleFluid.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C2B78E417A1E81F005B2A37 /* Vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		9C2B78E517A1E832005B2A37 /* Vector.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Vector.c; sourceTree = "<group>"; };
+		9C2B78E717A1E88F005B2A37 /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
+		9C2B78E817A1E8A2005B2A37 /* LinkedList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LinkedList.c; sourceTree = "<group>"; };
+		9C2B78EA17A21482005B2A37 /* Springs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Springs.c; sourceTree = "<group>"; };
+		9C2B78EC17A2149C005B2A37 /* Springs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Springs.h; sourceTree = "<group>"; };
 		9C4A27F517A1D83B00B06A94 /* Fluid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fluid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4A27F817A1D83B00B06A94 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9C4A27FA17A1D83B00B06A94 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +63,8 @@
 		9C4A281F17A1D83B00B06A94 /* FluidTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FluidTests-Info.plist"; sourceTree = "<group>"; };
 		9C4A282117A1D83B00B06A94 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9C4A282317A1D83B00B06A94 /* FluidTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FluidTests.m; sourceTree = "<group>"; };
+		9C4A282D17A1D89A00B06A94 /* ParticleFluid.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ParticleFluid.c; sourceTree = "<group>"; };
+		9C4A282F17A1D8B600B06A94 /* ParticleFluid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleFluid.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +129,14 @@
 				9C4A280A17A1D83B00B06A94 /* Main.storyboard */,
 				9C4A280D17A1D83B00B06A94 /* FLUViewController.h */,
 				9C4A280E17A1D83B00B06A94 /* FLUViewController.m */,
+				9C2B78E717A1E88F005B2A37 /* LinkedList.h */,
+				9C2B78E817A1E8A2005B2A37 /* LinkedList.c */,
+				9C2B78E417A1E81F005B2A37 /* Vector.h */,
+				9C2B78E517A1E832005B2A37 /* Vector.c */,
+				9C4A282F17A1D8B600B06A94 /* ParticleFluid.h */,
+				9C4A282D17A1D89A00B06A94 /* ParticleFluid.c */,
+				9C2B78EC17A2149C005B2A37 /* Springs.h */,
+				9C2B78EA17A21482005B2A37 /* Springs.c */,
 				9C4A281017A1D83B00B06A94 /* Images.xcassets */,
 				9C4A27FF17A1D83B00B06A94 /* Supporting Files */,
 			);
@@ -250,9 +270,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C2B78EB17A21482005B2A37 /* Springs.c in Sources */,
+				9C4A282E17A1D89A00B06A94 /* ParticleFluid.c in Sources */,
 				9C4A280917A1D83B00B06A94 /* FLUAppDelegate.m in Sources */,
 				9C4A280F17A1D83B00B06A94 /* FLUViewController.m in Sources */,
 				9C4A280517A1D83B00B06A94 /* main.m in Sources */,
+				9C2B78E917A1E8A2005B2A37 /* LinkedList.c in Sources */,
+				9C2B78E617A1E832005B2A37 /* Vector.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +479,7 @@
 				9C4A282917A1D83B00B06A94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9C4A282A17A1D83B00B06A94 /* Build configuration list for PBXNativeTarget "FluidTests" */ = {
 			isa = XCConfigurationList;
@@ -463,6 +488,7 @@
 				9C4A282C17A1D83B00B06A94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
