@@ -36,7 +36,7 @@
     springs = springs_create(particles_count);
     shash = spatialhash_create(320., 500., 50);
     
-    self.updateTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(_updateTimerFired:) userInfo:nil repeats:YES];
+    self.updateTimer = [NSTimer timerWithTimeInterval:0.03 target:self selector:@selector(_updateTimerFired:) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.updateTimer forMode:NSRunLoopCommonModes];
     
     return self;

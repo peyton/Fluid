@@ -124,7 +124,11 @@ size_t spatialhash_create_neighbors(SpatialHash *shash, Particle *p, struct List
             List particles = shash->map[i][j];
             while (particles)
             {
-                if (particles->data == p) goto next;
+                if (particles->data == p)
+                {
+                    particles = particles->next;
+                    continue;
+                }
                 
                 if (count == buffer_size - 1)
                 {
@@ -135,7 +139,6 @@ size_t spatialhash_create_neighbors(SpatialHash *shash, Particle *p, struct List
                 buffer[count] = particles;
                 ++count;
                 
-            next:
                 particles = particles->next;
             }
         }
