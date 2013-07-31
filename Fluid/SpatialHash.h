@@ -17,7 +17,6 @@ typedef struct {
     size_t width, height;
     Scalar maxX, maxY, h;
     List **map;
-    List els;
 } SpatialHash;
 
 SpatialHash *spatialhash_create(Scalar maxX, Scalar maxY, Scalar h);

@@ -16,7 +16,8 @@
 #define Fluid_ParticleFluid_h
 
 #include "Common.h"
+#include "SpatialHash.h"
 
-void update(Particle ps[], size_t count, TimeInterval dt, Springs *springs, RectF bounds);
+void update(Particle ps[], size_t count, TimeInterval dt, Springs *springs, SpatialHash *shash, RectF bounds);
 
 #endif

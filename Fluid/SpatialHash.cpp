@@ -26,22 +26,22 @@ typedef struct {
 
 #pragma mark - Helpers
 
-size_t clamp(size_t n, size_t min, size_t max)
+size_t clamp(int n, size_t min, size_t max)
 {
     if (n < min)
         return min;
     if (n >= max)
-        return max;
+        return max - 1;
     return n;
 }
 
 Hash spatialhash_hash(SpatialHash *shash, Vec2d pos)
 {
-    size_t i = ceil(pos.x / shash->h), j = ceil(pos.y / shash->h);
+    int i = floor(pos.x / shash->h), j = floor(pos.y / shash->h);
     i = clamp(i, 0, shash->width);
     j = clamp(j, 0, shash->height);
     
-    return (Hash){.i = i, .j = j};
+    return (Hash){.i = (size_t)i, .j = (size_t)j};
 }
 
 void spatialhash_free_map(SpatialHash *shash)
@@ -92,8 +92,14 @@ void spatialhash_insert(SpatialHash *shash, Particle *p, size_t index)
 
 void spatialhash_clear(SpatialHash *shash)
 {
-    spatialhash_free_map(shash);
-    spatialhash_create_map(shash);
+    for (size_t i = 0; i < shash->width; ++i)
+    {
+        for (size_t j = 0; j < shash->height; ++j)
+        {
+            list_free(shash->map[i][j]);
+            shash->map[i][j] = NULL;
+        }
+    }
 }
 
 void spatialhash_free(SpatialHash *shash)

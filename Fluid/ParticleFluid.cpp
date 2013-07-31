@@ -15,12 +15,12 @@
 #include "Util.h"
 
 // Simulation
-void adjust_springs(Particle ps[], size_t count, TimeInterval dt, Springs *springs, Scalar h, Scalar alpha, Scalar gamma, RectF bounds);
+void adjust_springs(Particle ps[], size_t count, TimeInterval dt, Springs *springs, SpatialHash *shash, Scalar h, Scalar alpha, Scalar gamma, RectF bounds);
 void apply_gravity(Particle ps[], size_t count, TimeInterval dt, Vec2d g);
 void apply_spring_displacements(Particle ps[], size_t count, TimeInterval dt, Springs *springs, Scalar k_spring, Scalar h);
-void apply_viscosity(Particle ps[], size_t count, TimeInterval dt, Scalar sigma, Scalar beta, Scalar h, RectF bounds);
+void apply_viscosity(Particle ps[], size_t count, TimeInterval dt, SpatialHash *shash, Scalar sigma, Scalar beta, Scalar h, RectF bounds);
 void compute_velocity(Particle ps[], size_t count, TimeInterval dt);
-void double_density_relaxation(Particle ps[], size_t count, TimeInterval dt, Scalar rho_0, Scalar k, Scalar k_near, Scalar h, RectF bounds);
+void double_density_relaxation(Particle ps[], size_t count, TimeInterval dt, SpatialHash *shash, Scalar rho_0, Scalar k, Scalar k_near, Scalar h, RectF bounds);
 void predict_positions(Particle ps[], size_t count, TimeInterval dt);
 void resolve_collisions(Particle ps[], size_t count, TimeInterval dt, Scalar mu, Scalar restitution, RectF bounds);
 
@@ -28,7 +28,7 @@ void resolve_collisions(Particle ps[], size_t count, TimeInterval dt, Scalar mu,
 
 #pragma mark - Simulation functions
 
-void update(Particle ps[], size_t count, TimeInterval dt, Springs *springs, RectF bounds)
+void update(Particle ps[], size_t count, TimeInterval dt, Springs *springs, SpatialHash *shash, RectF bounds)
 {
     const Vec2d g = {.x=0.1, .y=1000.};
     const Scalar alpha = 0.3;
@@ -46,20 +46,20 @@ void update(Particle ps[], size_t count, TimeInterval dt, Springs *springs, Rect
 //    const Scalar particle_mass = 1.;
     
     apply_gravity(ps, count, dt, g);
-    apply_viscosity(ps, count, dt, sigma, beta, h, bounds);
+    apply_viscosity(ps, count, dt, shash, sigma, beta, h, bounds);
     predict_positions(ps, count, dt);
-    adjust_springs(ps, count, dt, springs, h, alpha, gamma, bounds);
+    adjust_springs(ps, count, dt, springs, shash, h, alpha, gamma, bounds);
     apply_spring_displacements(ps, count, dt, springs, k_spring, h);
-    double_density_relaxation(ps, count, dt, rho_0, k, k_near, h, bounds);
+    double_density_relaxation(ps, count, dt, shash, rho_0, k, k_near, h, bounds);
     compute_velocity(ps, count, dt);
     resolve_collisions(ps, count, dt, mu, restitution, bounds);
 }
 
 #pragma mark - Steps
 
-void adjust_springs(Particle ps[], size_t count, TimeInterval dt, Springs *springs, Scalar h, Scalar alpha, Scalar gamma, RectF bounds)
+void adjust_springs(Particle ps[], size_t count, TimeInterval dt, Springs *springs, SpatialHash *shash, Scalar h, Scalar alpha, Scalar gamma, RectF bounds)
 {
-    SpatialHash *shash = spatialhash_create(bounds.size.width, bounds.size.height, h);
+    spatialhash_clear(shash);
     
     for (size_t i = 0; i < count; ++i)
         spatialhash_insert(shash, ps + i, i);
@@ -75,10 +75,11 @@ void adjust_springs(Particle ps[], size_t count, TimeInterval dt, Springs *sprin
             if (neighbor_index >= i) continue;
             Particle *neighbor = (Particle *)neighbors[j]->data;
             
-            Scalar r = vec_dist(ps[i].pos, neighbor->pos);
-            Scalar q = r / h;
-            if (q < 1.)
+            Scalar q = vec_dist_2(ps[i].pos, neighbor->pos);
+            if (q < h)
             {
+                Scalar r = sqrt(q);
+                q = r / h;
                 Scalar L = springs->lengths[i][neighbor_index];
                 if (L <= 0.)
                 {
@@ -100,7 +101,6 @@ void adjust_springs(Particle ps[], size_t count, TimeInterval dt, Springs *sprin
         free(neighbors);
     }
 
-    spatialhash_free(shash);
     struct ListNode *pair_node = springs->pairs;
     while (pair_node != NULL)
     {
@@ -145,9 +145,9 @@ void apply_spring_displacements(Particle ps[], size_t count, TimeInterval dt, Sp
     }
 }
 
-void apply_viscosity(Particle ps[], size_t count, TimeInterval dt, Scalar sigma, Scalar beta, Scalar h, RectF bounds)
+void apply_viscosity(Particle ps[], size_t count, TimeInterval dt, SpatialHash *shash, Scalar sigma, Scalar beta, Scalar h, RectF bounds)
 {
-    SpatialHash *shash = spatialhash_create(bounds.size.width, bounds.size.height, h);
+    spatialhash_clear(shash);
     
     for (size_t i = 0; i < count; ++i)
         spatialhash_insert(shash, ps + i, i);
@@ -162,9 +162,10 @@ void apply_viscosity(Particle ps[], size_t count, TimeInterval dt, Scalar sigma,
             if (neighbors[j]->i >= i) continue;
             Particle *neighbor = (Particle *)neighbors[j]->data;
             
-            Scalar q = vec_dist(ps[i].pos, neighbor->pos) / h;
-            if (q < 1.)
+            Scalar q = vec_dist_2(ps[i].pos, neighbor->pos);
+            if (q < h)
             {
+                q = sqrt(q) / h;
                 Vec2d r_hat = vec_unit(vec_sub(ps[i].pos, neighbor->pos));
                 Scalar u = vec_dot(vec_sub(ps[i].vel, neighbor->vel), r_hat);
                 if (u > 0.)
@@ -178,8 +179,6 @@ void apply_viscosity(Particle ps[], size_t count, TimeInterval dt, Scalar sigma,
         }
         free(neighbors);
     }
-    
-    spatialhash_free(shash);
 }
 
 void compute_velocity(Particle ps[], size_t count, TimeInterval dt)
@@ -191,9 +190,9 @@ void compute_velocity(Particle ps[], size_t count, TimeInterval dt)
 }
 
 
-void double_density_relaxation(Particle ps[], size_t count, TimeInterval dt, Scalar rho_0, Scalar k, Scalar k_near, Scalar h, RectF bounds)
+void double_density_relaxation(Particle ps[], size_t count, TimeInterval dt, SpatialHash *shash, Scalar rho_0, Scalar k, Scalar k_near, Scalar h, RectF bounds)
 {
-    SpatialHash *shash = spatialhash_create(bounds.size.width, bounds.size.height, h);
+    spatialhash_clear(shash);
     
     for (size_t i = 0; i < count; ++i)
         spatialhash_insert(shash, ps + i, i);
@@ -209,9 +208,10 @@ void double_density_relaxation(Particle ps[], size_t count, TimeInterval dt, Sca
         for (size_t j = 0; j < neighbors_count; j++) // Neighboring particles
         {
             Particle *neighbor = (Particle *)neighbors[j]->data;
-            Scalar q = vec_dist(ps[i].pos, neighbor->pos) / h;
-            if (q < 1.)
+            Scalar q = vec_dist_2(ps[i].pos, neighbor->pos);
+            if (q < h)
             {
+                q = sqrt(q) / h;
                 rho += (1. - q) * (1. - q);
                 rho_near += (1. - q) * (1. - q) * (1. - q);
             }
@@ -223,9 +223,10 @@ void double_density_relaxation(Particle ps[], size_t count, TimeInterval dt, Sca
         {
             if (j == i) continue;
             Particle *neighbor = (Particle *)neighbors[j]->data;
-            Scalar q = vec_dist(ps[i].pos, neighbor->pos) / h;
-            if (q < 1.)
+            Scalar q = vec_dist_2(ps[i].pos, neighbor->pos);
+            if (q < h)
             {
+                q = sqrt(q) / h;
                 Vec2d r_hat = vec_unit(vec_sub(ps[i].pos, neighbor->pos));
                 Scalar a = dt * dt * (P * (1. - q) + P_near * (1. - q) * (1. - q));
                 Vec2d D = vec_scale(r_hat, a * 0.5);
@@ -238,8 +239,6 @@ void double_density_relaxation(Particle ps[], size_t count, TimeInterval dt, Sca
         
         ps[i].pos = vec_add(ps[i].pos, dx);
     }
-    
-    spatialhash_free(shash);
 }
 
 void predict_positions(Particle ps[], size_t count, TimeInterval dt)

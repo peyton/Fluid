@@ -9,12 +9,14 @@
 #import "FLUViewController.h"
 
 #import "ParticleFluid.h"
+#import "SpatialHash.h"
 
 @interface FLUViewController ()
 {
     Particle *particles;
     size_t particles_count;
     Springs *springs;
+    SpatialHash *shash;
 }
 
 @property (nonatomic, weak) NSTimer *updateTimer;
@@ -29,9 +31,10 @@
     if (!(self = [super initWithCoder:aDecoder]))
         return nil;
     
-    particles_count = 2000;
+    particles_count = 1000;
     particles = (Particle *)calloc(particles_count, sizeof(Particle));
     springs = springs_create(particles_count);
+    shash = spatialhash_create(320., 500., 50);
     
     self.updateTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(_updateTimerFired:) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.updateTimer forMode:NSRunLoopCommonModes];
@@ -75,7 +78,7 @@
 - (void)update:(TimeInterval)dt;
 {
     RectF bounds = {.size = {.width = 320., .height = 500.}, .origin = {.x = 0., .y = 0.}};
-    update(particles, particles_count, dt, springs, bounds);
+    update(particles, particles_count, dt, springs, shash, bounds);
     
     [CATransaction begin];
     [CATransaction setAnimationDuration:0.0];
