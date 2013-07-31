@@ -14,6 +14,7 @@
 
 typedef struct {
     Scalar **lengths;
+    size_t count;
     List pairs;
 } Springs;
 

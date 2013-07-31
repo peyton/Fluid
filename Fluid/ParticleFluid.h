@@ -15,16 +15,8 @@
 #ifndef Fluid_ParticleFluid_h
 #define Fluid_ParticleFluid_h
 
-#include "LinkedList.h"
-#include "Springs.h"
-#include "Vector.h"
+#include "Common.h"
 
-typedef float TimeInterval;
-
-typedef struct {
-    Vec2d pos, prev_pos, vel;
-} Particle;
-
-void update(Particle ps[], size_t count, TimeInterval dt, Springs springs);
+void update(Particle ps[], size_t count, TimeInterval dt, Springs *springs, RectF bounds);
 
 #endif

@@ -9,6 +9,7 @@
 #include "Vector.h"
 
 #include <math.h>
+#include <float.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -33,7 +34,9 @@ Vec2d vec_scale(Vec2d vec, Scalar a)
 
 Vec2d vec_unit(Vec2d vec)
 {
-    return vec_scale(vec, 1. / vec_norm(vec));
+    Scalar norm = vec_norm(vec);
+    norm = fmax(norm, FLT_MIN);
+    return vec_scale(vec, 1. / norm);
 }
 
 Scalar vec_dot(Vec2d vec1, Vec2d vec2)

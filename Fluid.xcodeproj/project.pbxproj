@@ -7,24 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C2B78E617A1E832005B2A37 /* Vector.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C2B78E517A1E832005B2A37 /* Vector.c */; };
-		9C2B78E917A1E8A2005B2A37 /* LinkedList.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C2B78E817A1E8A2005B2A37 /* LinkedList.c */; };
-		9C2B78EB17A21482005B2A37 /* Springs.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C2B78EA17A21482005B2A37 /* Springs.c */; };
+		9C2B78E617A1E832005B2A37 /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C2B78E517A1E832005B2A37 /* Vector.cpp */; };
+		9C2B78E917A1E8A2005B2A37 /* LinkedList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C2B78E817A1E8A2005B2A37 /* LinkedList.cpp */; };
+		9C2B78EB17A21482005B2A37 /* Springs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C2B78EA17A21482005B2A37 /* Springs.cpp */; };
 		9C4A27F917A1D83B00B06A94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A27F817A1D83B00B06A94 /* Foundation.framework */; };
 		9C4A27FB17A1D83B00B06A94 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A27FA17A1D83B00B06A94 /* CoreGraphics.framework */; };
 		9C4A27FD17A1D83B00B06A94 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A27FC17A1D83B00B06A94 /* UIKit.framework */; };
 		9C4A280317A1D83B00B06A94 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C4A280117A1D83B00B06A94 /* InfoPlist.strings */; };
 		9C4A280517A1D83B00B06A94 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A280417A1D83B00B06A94 /* main.m */; };
-		9C4A280917A1D83B00B06A94 /* FLUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A280817A1D83B00B06A94 /* FLUAppDelegate.m */; };
+		9C4A280917A1D83B00B06A94 /* FLUAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A280817A1D83B00B06A94 /* FLUAppDelegate.mm */; };
 		9C4A280C17A1D83B00B06A94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4A280A17A1D83B00B06A94 /* Main.storyboard */; };
-		9C4A280F17A1D83B00B06A94 /* FLUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A280E17A1D83B00B06A94 /* FLUViewController.m */; };
+		9C4A280F17A1D83B00B06A94 /* FLUViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A280E17A1D83B00B06A94 /* FLUViewController.mm */; };
 		9C4A281117A1D83B00B06A94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C4A281017A1D83B00B06A94 /* Images.xcassets */; };
 		9C4A281817A1D83B00B06A94 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A281717A1D83B00B06A94 /* XCTest.framework */; };
 		9C4A281917A1D83B00B06A94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A27F817A1D83B00B06A94 /* Foundation.framework */; };
 		9C4A281A17A1D83B00B06A94 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A27FC17A1D83B00B06A94 /* UIKit.framework */; };
 		9C4A282217A1D83B00B06A94 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C4A282017A1D83B00B06A94 /* InfoPlist.strings */; };
 		9C4A282417A1D83B00B06A94 /* FluidTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A282317A1D83B00B06A94 /* FluidTests.m */; };
-		9C4A282E17A1D89A00B06A94 /* ParticleFluid.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A282D17A1D89A00B06A94 /* ParticleFluid.c */; };
+		9C4A282E17A1D89A00B06A94 /* ParticleFluid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C4A282D17A1D89A00B06A94 /* ParticleFluid.cpp */; };
+		9CB5321417A87F7300138B0E /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CB5321317A87F7300138B0E /* Geometry.cpp */; };
+		9CB5321617A8977200138B0E /* SpatialHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CB5321517A8977200138B0E /* SpatialHash.cpp */; };
+		9CFC5A7C17A71FE1008F6998 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC5A7B17A71FE1008F6998 /* Util.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,14 +38,49 @@
 			remoteGlobalIDString = 9C4A27F417A1D83B00B06A94;
 			remoteInfo = Fluid;
 		};
+		9CFC5C7617A720A2008F6998 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CFC5C6F17A720A2008F6998 /* Box2D.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 80FF01D2141C3D980059E59D;
+			remoteInfo = Box2D;
+		};
+		9CFC5C7817A720A2008F6998 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CFC5C6F17A720A2008F6998 /* Box2D.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 80BB8901141C3E1800F1753A;
+			remoteInfo = GLUI;
+		};
+		9CFC5C7A17A720A2008F6998 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CFC5C6F17A720A2008F6998 /* Box2D.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 80BB890A141C3E2700F1753A;
+			remoteInfo = HelloWorld;
+		};
+		9CFC5C7C17A720A2008F6998 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CFC5C6F17A720A2008F6998 /* Box2D.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 80BB8918141C3E3600F1753A;
+			remoteInfo = Testbed;
+		};
+		9CFC5C7E17A72159008F6998 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CFC5C6F17A720A2008F6998 /* Box2D.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 80FF01D1141C3D980059E59D;
+			remoteInfo = Box2D;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9C2B78E417A1E81F005B2A37 /* Vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
-		9C2B78E517A1E832005B2A37 /* Vector.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Vector.c; sourceTree = "<group>"; };
+		9C2B78E517A1E832005B2A37 /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector.cpp; sourceTree = "<group>"; };
 		9C2B78E717A1E88F005B2A37 /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
-		9C2B78E817A1E8A2005B2A37 /* LinkedList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LinkedList.c; sourceTree = "<group>"; };
-		9C2B78EA17A21482005B2A37 /* Springs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Springs.c; sourceTree = "<group>"; };
+		9C2B78E817A1E8A2005B2A37 /* LinkedList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinkedList.cpp; sourceTree = "<group>"; };
+		9C2B78EA17A21482005B2A37 /* Springs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Springs.cpp; sourceTree = "<group>"; };
 		9C2B78EC17A2149C005B2A37 /* Springs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Springs.h; sourceTree = "<group>"; };
 		9C4A27F517A1D83B00B06A94 /* Fluid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fluid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4A27F817A1D83B00B06A94 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -53,18 +91,26 @@
 		9C4A280417A1D83B00B06A94 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9C4A280617A1D83B00B06A94 /* Fluid-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fluid-Prefix.pch"; sourceTree = "<group>"; };
 		9C4A280717A1D83B00B06A94 /* FLUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLUAppDelegate.h; sourceTree = "<group>"; };
-		9C4A280817A1D83B00B06A94 /* FLUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLUAppDelegate.m; sourceTree = "<group>"; };
+		9C4A280817A1D83B00B06A94 /* FLUAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FLUAppDelegate.mm; sourceTree = "<group>"; };
 		9C4A280B17A1D83B00B06A94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9C4A280D17A1D83B00B06A94 /* FLUViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLUViewController.h; sourceTree = "<group>"; };
-		9C4A280E17A1D83B00B06A94 /* FLUViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLUViewController.m; sourceTree = "<group>"; };
+		9C4A280E17A1D83B00B06A94 /* FLUViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FLUViewController.mm; sourceTree = "<group>"; };
 		9C4A281017A1D83B00B06A94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9C4A281617A1D83B00B06A94 /* FluidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FluidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4A281717A1D83B00B06A94 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9C4A281F17A1D83B00B06A94 /* FluidTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FluidTests-Info.plist"; sourceTree = "<group>"; };
 		9C4A282117A1D83B00B06A94 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9C4A282317A1D83B00B06A94 /* FluidTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FluidTests.m; sourceTree = "<group>"; };
-		9C4A282D17A1D89A00B06A94 /* ParticleFluid.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ParticleFluid.c; sourceTree = "<group>"; };
+		9C4A282D17A1D89A00B06A94 /* ParticleFluid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleFluid.cpp; sourceTree = "<group>"; };
 		9C4A282F17A1D8B600B06A94 /* ParticleFluid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleFluid.h; sourceTree = "<group>"; };
+		9CB5321217A87F6700138B0E /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
+		9CB5321317A87F7300138B0E /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Geometry.cpp; sourceTree = "<group>"; };
+		9CB5321517A8977200138B0E /* SpatialHash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialHash.cpp; sourceTree = "<group>"; };
+		9CB5321717A8977A00138B0E /* SpatialHash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpatialHash.h; sourceTree = "<group>"; };
+		9CFC5A7A17A71FC5008F6998 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		9CFC5A7B17A71FE1008F6998 /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
+		9CFC5C6F17A720A2008F6998 /* Box2D.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Box2D.xcodeproj; path = box2d/Build/xcode4/Box2D.xcodeproj; sourceTree = "<group>"; };
+		9CFC5C8017A72257008F6998 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +144,7 @@
 				9C4A281D17A1D83B00B06A94 /* FluidTests */,
 				9C4A27F717A1D83B00B06A94 /* Frameworks */,
 				9C4A27F617A1D83B00B06A94 /* Products */,
+				9CFC5C6F17A720A2008F6998 /* Box2D.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,18 +172,25 @@
 			isa = PBXGroup;
 			children = (
 				9C4A280717A1D83B00B06A94 /* FLUAppDelegate.h */,
-				9C4A280817A1D83B00B06A94 /* FLUAppDelegate.m */,
+				9C4A280817A1D83B00B06A94 /* FLUAppDelegate.mm */,
 				9C4A280A17A1D83B00B06A94 /* Main.storyboard */,
 				9C4A280D17A1D83B00B06A94 /* FLUViewController.h */,
-				9C4A280E17A1D83B00B06A94 /* FLUViewController.m */,
+				9C4A280E17A1D83B00B06A94 /* FLUViewController.mm */,
+				9CFC5C8017A72257008F6998 /* Common.h */,
+				9CB5321217A87F6700138B0E /* Geometry.h */,
+				9CB5321317A87F7300138B0E /* Geometry.cpp */,
 				9C2B78E717A1E88F005B2A37 /* LinkedList.h */,
-				9C2B78E817A1E8A2005B2A37 /* LinkedList.c */,
+				9C2B78E817A1E8A2005B2A37 /* LinkedList.cpp */,
 				9C2B78E417A1E81F005B2A37 /* Vector.h */,
-				9C2B78E517A1E832005B2A37 /* Vector.c */,
+				9C2B78E517A1E832005B2A37 /* Vector.cpp */,
 				9C4A282F17A1D8B600B06A94 /* ParticleFluid.h */,
-				9C4A282D17A1D89A00B06A94 /* ParticleFluid.c */,
+				9C4A282D17A1D89A00B06A94 /* ParticleFluid.cpp */,
+				9CB5321717A8977A00138B0E /* SpatialHash.h */,
+				9CB5321517A8977200138B0E /* SpatialHash.cpp */,
 				9C2B78EC17A2149C005B2A37 /* Springs.h */,
-				9C2B78EA17A21482005B2A37 /* Springs.c */,
+				9C2B78EA17A21482005B2A37 /* Springs.cpp */,
+				9CFC5A7A17A71FC5008F6998 /* Util.h */,
+				9CFC5A7B17A71FE1008F6998 /* Util.cpp */,
 				9C4A281017A1D83B00B06A94 /* Images.xcassets */,
 				9C4A27FF17A1D83B00B06A94 /* Supporting Files */,
 			);
@@ -172,6 +226,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9CFC5C7017A720A2008F6998 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9CFC5C7717A720A2008F6998 /* libBox2D.a */,
+				9CFC5C7917A720A2008F6998 /* libGLUI.a */,
+				9CFC5C7B17A720A2008F6998 /* HelloWorld */,
+				9CFC5C7D17A720A2008F6998 /* Testbed */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -186,6 +251,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9CFC5C7F17A72159008F6998 /* PBXTargetDependency */,
 			);
 			name = Fluid;
 			productName = Fluid;
@@ -236,6 +302,12 @@
 			mainGroup = 9C4A27EC17A1D83B00B06A94;
 			productRefGroup = 9C4A27F617A1D83B00B06A94 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9CFC5C7017A720A2008F6998 /* Products */;
+					ProjectRef = 9CFC5C6F17A720A2008F6998 /* Box2D.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9C4A27F417A1D83B00B06A94 /* Fluid */,
@@ -243,6 +315,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9CFC5C7717A720A2008F6998 /* libBox2D.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBox2D.a;
+			remoteRef = 9CFC5C7617A720A2008F6998 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9CFC5C7917A720A2008F6998 /* libGLUI.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGLUI.a;
+			remoteRef = 9CFC5C7817A720A2008F6998 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9CFC5C7B17A720A2008F6998 /* HelloWorld */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = HelloWorld;
+			remoteRef = 9CFC5C7A17A720A2008F6998 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9CFC5C7D17A720A2008F6998 /* Testbed */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = Testbed;
+			remoteRef = 9CFC5C7C17A720A2008F6998 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9C4A27F317A1D83B00B06A94 /* Resources */ = {
@@ -270,13 +373,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C2B78EB17A21482005B2A37 /* Springs.c in Sources */,
-				9C4A282E17A1D89A00B06A94 /* ParticleFluid.c in Sources */,
-				9C4A280917A1D83B00B06A94 /* FLUAppDelegate.m in Sources */,
-				9C4A280F17A1D83B00B06A94 /* FLUViewController.m in Sources */,
+				9C2B78EB17A21482005B2A37 /* Springs.cpp in Sources */,
+				9CB5321417A87F7300138B0E /* Geometry.cpp in Sources */,
+				9C4A282E17A1D89A00B06A94 /* ParticleFluid.cpp in Sources */,
+				9C4A280917A1D83B00B06A94 /* FLUAppDelegate.mm in Sources */,
+				9C4A280F17A1D83B00B06A94 /* FLUViewController.mm in Sources */,
 				9C4A280517A1D83B00B06A94 /* main.m in Sources */,
-				9C2B78E917A1E8A2005B2A37 /* LinkedList.c in Sources */,
-				9C2B78E617A1E832005B2A37 /* Vector.c in Sources */,
+				9CFC5A7C17A71FE1008F6998 /* Util.cpp in Sources */,
+				9C2B78E917A1E8A2005B2A37 /* LinkedList.cpp in Sources */,
+				9CB5321617A8977200138B0E /* SpatialHash.cpp in Sources */,
+				9C2B78E617A1E832005B2A37 /* Vector.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +401,11 @@
 			isa = PBXTargetDependency;
 			target = 9C4A27F417A1D83B00B06A94 /* Fluid */;
 			targetProxy = 9C4A281B17A1D83B00B06A94 /* PBXContainerItemProxy */;
+		};
+		9CFC5C7F17A72159008F6998 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Box2D;
+			targetProxy = 9CFC5C7E17A72159008F6998 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -401,6 +512,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fluid/Fluid-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/box2d";
 				INFOPLIST_FILE = "Fluid/Fluid-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -414,6 +526,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fluid/Fluid-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/box2d";
 				INFOPLIST_FILE = "Fluid/Fluid-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

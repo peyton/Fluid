@@ -15,12 +15,13 @@ struct ListNode;
 
 struct ListNode {
     size_t i, j;
+    void *data;
     struct ListNode *prev, *next;
 };
 
 typedef struct ListNode* List;
 
-List list_prepend(List list, size_t i, size_t j);
+List list_prepend(List list, size_t i, size_t j, void *data);
 List list_remove_node(struct ListNode *node, List list);
 void list_free(List list);
 

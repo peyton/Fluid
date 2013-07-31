@@ -11,13 +11,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-List list_prepend(List list, size_t i, size_t j)
+List list_prepend(List list, size_t i, size_t j, void *data)
 {
-    struct ListNode *new_node = malloc(sizeof(struct ListNode));
+    struct ListNode *new_node = (struct ListNode *)malloc(sizeof(struct ListNode));
     new_node->i = i;
     new_node->j = j;
+    new_node->data = data;
     new_node->next = list;
-    list->prev = (list != NULL) ? new_node : NULL;
+    new_node->prev = NULL;
+    if (list)
+        list->prev = new_node;
     
     return new_node;
 }
