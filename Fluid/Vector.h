@@ -53,7 +53,8 @@ inline Vec2d vec_scale(Vec2d vec, Scalar a)
 inline Vec2d vec_unit(Vec2d vec)
 {
     Scalar norm = vec_norm(vec);
-    norm = fmax(norm, FLT_MIN);
+    if (norm < FLT_MIN)
+        return {.x = 0, .y = 0};
     return vec_scale(vec, 1. / norm);
 }
 

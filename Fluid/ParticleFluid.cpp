@@ -32,27 +32,26 @@ void update(Particle ps[], size_t count, TimeInterval dt, Springs *springs, Spat
 {
     const Vec2d g = {.x=0.1, .y=1000.};
     const Scalar alpha = 0.3;
-    const Scalar sigma = 0.1;
-    const Scalar beta = 0.01;
-    const Scalar h = 50;
+    const Scalar sigma = 0.0;
+    const Scalar beta = 0.1;
+    const Scalar h = 20.;
     const Scalar gamma = 0.2;
-    const Scalar rho_0 = 10.;
+    const Scalar rho_0 = 0.5;
     const Scalar mu = 0.5;
-    const Scalar k = 0.004;
-    const Scalar k_near = 0.01;
-    const Scalar k_spring = 0.3;
+    const Scalar k = 2000;
+    const Scalar k_near = 3000;
+    const Scalar k_spring = 0.03;
     const Scalar restitution = 0.6;
 //    const Scalar particle_radius = 0.2;
 //    const Scalar particle_mass = 1.;
-    
     apply_gravity(ps, count, dt, g);
     apply_viscosity(ps, count, dt, shash, sigma, beta, h, bounds);
     predict_positions(ps, count, dt);
     adjust_springs(ps, count, dt, springs, shash, h, alpha, gamma, bounds);
     apply_spring_displacements(ps, count, dt, springs, k_spring, h);
     double_density_relaxation(ps, count, dt, shash, rho_0, k, k_near, h, bounds);
-    compute_velocity(ps, count, dt);
     resolve_collisions(ps, count, dt, mu, restitution, bounds);
+    compute_velocity(ps, count, dt);
 }
 
 #pragma mark - Steps
@@ -72,7 +71,7 @@ void adjust_springs(Particle ps[], size_t count, TimeInterval dt, Springs *sprin
         for (size_t j = 0; j < neighbors_count; j++) // Neighboring particles
         {
             size_t neighbor_index = neighbors[j]->i;
-            if (neighbor_index >= i) continue;
+            if (i >= neighbor_index) continue;
             Particle *neighbor = (Particle *)neighbors[j]->data;
             
             Scalar q = vec_dist_2(ps[i].pos, neighbor->pos);
@@ -135,7 +134,7 @@ void apply_spring_displacements(Particle ps[], size_t count, TimeInterval dt, Sp
         Scalar L = springs->lengths[i][j];
         Scalar r = vec_dist(ps[i].pos, ps[j].pos);
         Scalar a = dt * dt * k_spring * (1 - L / h) * (L - r);
-        Vec2d r_hat = vec_unit(vec_sub(ps[i].pos, ps[j].pos));
+        Vec2d r_hat = vec_unit(vec_sub(ps[j].pos, ps[i].pos));
         
         Vec2d D = vec_scale(r_hat, a * 0.5);
         ps[i].pos = vec_sub(ps[i].pos, D);
@@ -159,16 +158,16 @@ void apply_viscosity(Particle ps[], size_t count, TimeInterval dt, SpatialHash *
         
         for (size_t j = 0; j < neighbors_count; j++) // Neighboring particles
         {
-            if (neighbors[j]->i >= i) continue;
+            if (i >= neighbors[j]->i) continue;
             Particle *neighbor = (Particle *)neighbors[j]->data;
             
             Scalar q = vec_dist_2(ps[i].pos, neighbor->pos);
             if (q < h)
             {
                 q = sqrt(q) / h;
-                Vec2d r_hat = vec_unit(vec_sub(ps[i].pos, neighbor->pos));
+                Vec2d r_hat = vec_unit(vec_sub(neighbor->pos, ps[i].pos));
                 Scalar u = vec_dot(vec_sub(ps[i].vel, neighbor->vel), r_hat);
-                if (u > 0.)
+                if (u > 0. && u < 10000.)
                 {
                     Scalar a = dt * (1. - q) * (sigma * u + beta * u * u);
                     Vec2d I_2 = vec_scale(r_hat, 0.5 * a);
@@ -207,6 +206,7 @@ void double_density_relaxation(Particle ps[], size_t count, TimeInterval dt, Spa
         
         for (size_t j = 0; j < neighbors_count; j++) // Neighboring particles
         {
+            if (neighbors[j]->i == i) continue;
             Particle *neighbor = (Particle *)neighbors[j]->data;
             Scalar q = vec_dist_2(ps[i].pos, neighbor->pos);
             if (q < h)
@@ -221,13 +221,13 @@ void double_density_relaxation(Particle ps[], size_t count, TimeInterval dt, Spa
         Vec2d dx = {.x = 0., .y = 0.};
         for (size_t j = 0; j < neighbors_count; j++) // Neighboring particles
         {
-            if (j == i) continue;
+            if (neighbors[j]->i == i) continue;
             Particle *neighbor = (Particle *)neighbors[j]->data;
             Scalar q = vec_dist_2(ps[i].pos, neighbor->pos);
             if (q < h)
             {
                 q = sqrt(q) / h;
-                Vec2d r_hat = vec_unit(vec_sub(ps[i].pos, neighbor->pos));
+                Vec2d r_hat = vec_unit(vec_sub(neighbor->pos, ps[i].pos));
                 Scalar a = dt * dt * (P * (1. - q) + P_near * (1. - q) * (1. - q));
                 Vec2d D = vec_scale(r_hat, a * 0.5);
                 neighbor->pos = vec_add(neighbor->pos, D);
@@ -286,14 +286,14 @@ void resolve_collisions(Particle ps[], size_t count, TimeInterval dt, Scalar mu,
             continue;
         }
         
-        ps[i].pos.x = clampBetween(ps[i].pos.x, minX, maxX);
-        ps[i].pos.y = clampBetween(ps[i].pos.y, minY, maxY);
+        ps[i].pos.x = clampBetween(ps[i].pos.x, minX + FLT_MIN, maxX - FLT_MIN);
+        ps[i].pos.y = clampBetween(ps[i].pos.y, minY + FLT_MIN, maxY - FLT_MIN);
         
         Vec2d v_normal = vec_scale(norm, vec_dot(ps[i].vel, norm));
         Vec2d v_tangent = vec_sub(ps[i].vel, v_normal);
         Vec2d I = vec_sub(v_normal, vec_scale(v_tangent, mu));
         I.y = -I.y;
-        ps[i].vel = vec_scale(I, restitution);
+        ps[i].vel = I;
     }
 }
 

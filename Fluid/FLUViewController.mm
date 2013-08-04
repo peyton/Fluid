@@ -36,7 +36,7 @@
     springs = springs_create(particles_count);
     shash = spatialhash_create(320., 500., 50);
     
-    self.updateTimer = [NSTimer timerWithTimeInterval:0.03 target:self selector:@selector(_updateTimerFired:) userInfo:nil repeats:YES];
+    self.updateTimer = [NSTimer timerWithTimeInterval:0.02 target:self selector:@selector(_updateTimerFired:) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.updateTimer forMode:NSRunLoopCommonModes];
     
     return self;
@@ -54,10 +54,12 @@
     #define ARC4RANDOM_MAX      0x100000000
     [super viewDidLoad];
 	
+    self.view.backgroundColor = [UIColor blackColor];
+    
     NSMutableArray *particleLayers = [NSMutableArray arrayWithCapacity:particles_count];
     for (size_t i = 0; i < particles_count; ++i)
     {
-        particles[i].pos = {.x = ((Scalar)arc4random() / ARC4RANDOM_MAX * 300), .y = ((Scalar)arc4random() / ARC4RANDOM_MAX * 500)};
+        particles[i].pos = {.x = (100 + (Scalar)arc4random() / ARC4RANDOM_MAX * 100), .y = ((Scalar)arc4random() / ARC4RANDOM_MAX * 500)};
         
         CAShapeLayer *particle = [[CAShapeLayer alloc] init];
         particle.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0.f, 0.f, 10.f, 10.f)].CGPath;
@@ -72,13 +74,18 @@
 
 - (void)_updateTimerFired:(id)sender;
 {
-    [self update:0.01];
+    [self update:0.02];
 }
 
 - (void)update:(TimeInterval)dt;
 {
     RectF bounds = {.size = {.width = 320., .height = 500.}, .origin = {.x = 0., .y = 0.}};
-    update(particles, particles_count, dt, springs, shash, bounds);
+    
+    size_t updates_per_frame = 2;
+    for (size_t i = 0; i < updates_per_frame; ++i)
+    {
+        update(particles, particles_count, dt/updates_per_frame, springs, shash, bounds);
+    }
     
     [CATransaction begin];
     [CATransaction setAnimationDuration:0.0];
